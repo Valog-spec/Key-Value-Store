@@ -41,6 +41,7 @@ class CacheService(KeyValueStoreServicer):
             return PutResponse()
         try:
             await self._cache.put(request.key, request.value, request.ttl_seconds)
+            return PutResponse()
         except Exception:
             context.set_code(grpc.StatusCode.INTERNAL)
             context.set_details("Internal server error")
